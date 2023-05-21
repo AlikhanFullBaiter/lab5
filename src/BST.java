@@ -1,5 +1,14 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Implementation of a binary search tree (BST) data structure.
+ *
+ * @param <K> the type of keys stored in the BST (must implement Comparable interface)
+ * @param <V> the type of values stored in the BST
+ */
 public class BST<K extends Comparable <K> , V>  {
     private Node root;
     private int size;
@@ -7,12 +16,21 @@ public class BST<K extends Comparable <K> , V>  {
         private K key;
         private V val;
         private Node left , right;
+        /**
+         * Inner class representing a node in the BST.
+         */
         public Node (K key , V val) {
             this.key = key;
             this.val = val;
         }
     }
 
+    /**
+     * Inserts a key-value pair into the BST.
+     *
+     * @param key the key to insert
+     * @param val the value associated with the key
+     */
     public void put(K key , V val) {
         root = put(root , key , val);
     }
@@ -34,6 +52,12 @@ public class BST<K extends Comparable <K> , V>  {
         return node;
     }
 
+    /**
+     * Retrieves the value associated with the given key in the BST.
+     *
+     * @param key the key to search for
+     * @return the value associated with the key, or null if the key is not found
+     */
     public V get(K key) {
         Node node = get(root, key);
         return node == null ? null : node.val;
@@ -52,6 +76,11 @@ public class BST<K extends Comparable <K> , V>  {
             return node;
     }
 
+    /**
+     * Deletes a key and its associated value from the BST.
+     *
+     * @param key the key to delete
+     */
     public void delete(K key) {
         root = delete(root, key);
     }
@@ -93,6 +122,11 @@ public class BST<K extends Comparable <K> , V>  {
         return node;
     }
 
+    /**
+     * Returns an iterable collection of keys in the BST, in ascending order.
+     *
+     * @return an iterable collection of keys
+     */
     public Iterable<K> iterator() {
         List<K> keys = new ArrayList<>();
         inOrderTraversal(root, keys);
@@ -105,4 +139,5 @@ public class BST<K extends Comparable <K> , V>  {
             keys.add(node.key);
             inOrderTraversal(node.right, keys);
         }
+    }
 }
