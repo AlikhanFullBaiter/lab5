@@ -9,17 +9,19 @@ import java.util.List;
  * @param <K> the type of keys stored in the BST (must implement Comparable interface)
  * @param <V> the type of values stored in the BST
  */
-public class BST<K extends Comparable <K> , V>  {
+public class BST<K extends Comparable <K> , V> {
     private Node root;
     private int size;
+
     private class Node {
         private K key;
         private V val;
-        private Node left , right;
+        private Node left, right;
+
         /**
          * Inner class representing a node in the BST.
          */
-        public Node (K key , V val) {
+        public Node(K key, V val) {
             this.key = key;
             this.val = val;
         }
@@ -31,8 +33,8 @@ public class BST<K extends Comparable <K> , V>  {
      * @param key the key to insert
      * @param val the value associated with the key
      */
-    public void put(K key , V val) {
-        root = put(root , key , val);
+    public void put(K key, V val) {
+        root = put(root, key, val);
     }
 
     private Node put(Node node, K key, V val) {
@@ -109,6 +111,7 @@ public class BST<K extends Comparable <K> , V>  {
 
         return node;
     }
+
     private Node min(Node node) {
         if (node.left == null)
             return node;
@@ -138,6 +141,24 @@ public class BST<K extends Comparable <K> , V>  {
             inOrderTraversal(node.left, keys);
             keys.add(node.key);
             inOrderTraversal(node.right, keys);
+        }
+    }
+
+
+    public int findHeight() {
+        return Height(root);
+    }
+    private int Height(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+            int leftHeight = Height(node.left);
+            int rightHeight = Height(node.right);
+
+            if (leftHeight > rightHeight) {
+                return leftHeight + 1;
+            } else {
+                return rightHeight + 1; }
         }
     }
 }
