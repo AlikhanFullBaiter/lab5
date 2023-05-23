@@ -15,5 +15,6 @@ public class Main {
         System.out.println(myBST.get(2));
 
         System.out.println(myBST.iterator());
+        System.out.println(myBST.findHeight());
     }
 }
